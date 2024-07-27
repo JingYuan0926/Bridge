@@ -1,13 +1,7 @@
 
 // pages/index.js
-import Map from '../components/Map';
-
+import LandingPage from './landingPage'; // Correctly import LandingPage
 
 export default function Home() {
-  return (
-    <div>
-      <Map />
-    </div>
-  );
+  return <LandingPage />; // Render LandingPage
 }
-
