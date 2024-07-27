@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import useKeyPress from '../hooks/useKeyPress';
 import Image from 'next/image';
 
-
 const Character = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [sprite, setSprite] = useState('/csy1.png'); // Default sprite
@@ -14,6 +13,8 @@ const Character = () => {
   const moveRight = useKeyPress('d');
   const jump = useKeyPress('w');
   const navigate = useKeyPress(' '); // Detect spacebar press
+  const tutorial = useKeyPress('t'); // Detect 't' key press
+  const quiz = useKeyPress('q'); // Detect 'q' key press
 
   useEffect(() => {
     let interval;
@@ -48,6 +49,16 @@ const Character = () => {
       router.push('/room'); // Replace '/newpage' with your desired route
     }
   }, [navigate, router]);
+  useEffect(() => {
+    if (quiz) {
+      router.push('/quiz'); // Replace '/newpage' with your desired route
+    }
+  }, [quiz, router]);
+  useEffect(() => {
+    if (tutorial) {
+      router.push('/tutorial'); // Replace '/newpage' with your desired route
+    }
+  }, [tutorial, router]);
 
   return (
     <div
