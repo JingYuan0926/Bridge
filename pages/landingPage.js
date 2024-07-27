@@ -1,7 +1,14 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import { useRouter } from 'next/router';  // Import useRouter from next/router
 
 export default function LandingPage() {
+  const router = useRouter();  // Initialize the router
+
+  // Function to handle button click
+  const handleStartClick = () => {
+    router.push('/map');  // Navigate to the map page
+  };
+
   return (
     <div className="container">
       <Head>
@@ -11,7 +18,7 @@ export default function LandingPage() {
       </Head>
       <main className="main">
         <div className="buttons">
-          <button className="play-button">
+          <button className="play-button" onClick={handleStartClick}>
             <span className="button-text">START</span>
           </button>
         </div>
@@ -59,7 +66,8 @@ export default function LandingPage() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          opacity:0.9;
+          opacity: 0.9;
+          transition: background-color 0.3s ease;
         }
         .button-text {
           font-weight: 700;
