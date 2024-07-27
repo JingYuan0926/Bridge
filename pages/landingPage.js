@@ -32,7 +32,7 @@ export default function LandingPage() {
           flex-direction: column;
           justify-content: flex-end;
           align-items: center;
-          background-image: url('/bgr.jpeg');
+          background-image: url('/brg.jpeg');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;

@@ -102,27 +102,42 @@ export default function NewQuestionnaire() {
         {error && <p className="error-text">{error}</p>}
       </div>
 
+      <style jsx global>{`
+        html, body {
+          margin: 0;
+          padding: 0;
+          min-height: 100vh;
+          width: 100%;
+          background-image: url('/background.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+        }
+      `}</style>
+
       <style jsx>{`
         .Universal {
           display: flex;
           justify-content: center;
-          align-items: center;  
-          background-image: url('/background.png');
-          padding: 20px;
+          align-items: center;
+          min-height: 100vh;
           width: 100%;
-          height: 100%;
+          padding: 20px;
+          box-sizing: border-box;
         }
 
         .container {
           background-color: rgba(60, 60, 60, 0.9);
-          max-width: 70%;
-          margin: 0 auto;
+          width: 70%;
+          margin: 20px auto;
           padding: 20px;
           border-radius: 15px;
           color: white;
         }
+
         .title {
-          font-size: 26px;
+          font-size: 30px;
           font-weight: bold;
           margin-bottom: 18px;
           text-align: center;
@@ -135,6 +150,7 @@ export default function NewQuestionnaire() {
           margin-bottom: 10px;
           font-weight: bold;
           margin-left: 5%;
+          font-size: 23px; 
         }
         .input, .textarea {
           width: 90%;
@@ -156,9 +172,10 @@ export default function NewQuestionnaire() {
           background-color: #fff;
           color: black;
           border: none;
-          border-radius: 4px;
+          border-radius: 10px;
           cursor: pointer;
           transition: background-color 0.3s;
+          font-size: 21px; 
         }
         .submit-button:hover {
           background-color: lightgray;
@@ -172,6 +189,16 @@ export default function NewQuestionnaire() {
           text-align: center;
           color: red;
           margin-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+          .container {
+            width: 90%;
+          }
+          .submit-button {
+            width: 50%;
+            margin-left: 25%;
+          }
         }
       `}</style>
     </div>
