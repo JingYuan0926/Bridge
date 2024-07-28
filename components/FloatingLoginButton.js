@@ -86,12 +86,9 @@ export default function FloatingLoginButton({ onLogin }) {
     localStorage.removeItem('zkLoginUserAddress');
     setZkLoginUserAddress(null);
     setBalance(null);
-<<<<<<< HEAD
     if (onLogin) {
       onLogin(null);
     }
-=======
->>>>>>> 50df1cc05dcef4fb39581449148b87d27869751e
   };
 
   return (
@@ -124,55 +121,12 @@ export default function FloatingLoginButton({ onLogin }) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-<<<<<<< HEAD
           align-items: center;
-=======
->>>>>>> 50df1cc05dcef4fb39581449148b87d27869751e
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
           cursor: pointer;
           padding: 10px;
           transition: all 0.3s ease;
-<<<<<<< HEAD
         }
-=======
-          text-align: left;
-          color: transparent;
-        }
-
-        .float-button img {
-          margin-top: 85px;
-          margin-left: 30px;
-        }
-
-        .logout-button {
-          background-color: transparent;
-          border: none;
-          color: transparent;
-        }
-
-        .float-button:hover {
-          background-color: #87CEEB;
-          width: 550px;
-          height: auto;
-          padding: 20px;
-          color: white;
-        }
-
-        .float-button:hover img {
-        display: none;
-      }
-
-        .float-button:hover .logout-button{
-          background-color: #FF6347;
-          color: white;
-          border: none;
-          border-radius: 8px;
-          padding: 5px 10px;
-          cursor: pointer;
-          margin-top: 10px;
-          display: inline-block;
-      }
->>>>>>> 50df1cc05dcef4fb39581449148b87d27869751e
 
         .float-button:hover {
           background-color: #87CEEB;
@@ -185,7 +139,6 @@ export default function FloatingLoginButton({ onLogin }) {
           margin: 0;
         }
 
-<<<<<<< HEAD
         .logout-button {
           background-color: #FF6347;
           color: white;
@@ -195,8 +148,6 @@ export default function FloatingLoginButton({ onLogin }) {
           cursor: pointer;
           margin-top: 10px;
         }
-=======
->>>>>>> 50df1cc05dcef4fb39581449148b87d27869751e
 
         .logout-button:hover {
           background-color: #FF4500;
