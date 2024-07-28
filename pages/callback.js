@@ -19,7 +19,7 @@ const Callback = () => {
           }
           const data = await response.json();
           localStorage.setItem('zkLoginUserAddress', data.address);
-          router.push('/');
+          router.push('/Questionnaire');
         } catch (error) {
           console.error('Error processing callback:', error);
           router.push('/error');
