@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [zkLoginUserAddress, setZkLoginUserAddress] = useState(null);
+  const [balance, setBalance] = useState(null);
+  const [authUrl, setAuthUrl] = useState('');
 
   useEffect(() => {
     const storedAddress = localStorage.getItem('zkLoginUserAddress');
     if (storedAddress) {
       setZkLoginUserAddress(storedAddress);
+      fetchBalance(storedAddress);
     }
   }, []);
-  const [authUrl, setAuthUrl] = useState('');
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -21,6 +23,34 @@ export default function Home() {
       }
     }
   }, []);
+
+  const fetchBalance = async (address) => {
+    try {
+      const response = await fetch('https://fullnode.testnet.sui.io/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'suix_getBalance',
+          params: [address, '0x2::sui::SUI']
+        }),
+      });
+
+      const data = await response.json();
+      if (data.result && data.result.totalBalance) {
+        const balanceInSui = parseInt(data.result.totalBalance) / 1000000000;
+        setBalance(balanceInSui.toFixed(9));
+      } else {
+        setBalance('0');
+      }
+    } catch (error) {
+      console.error('Error fetching balance:', error);
+      setBalance('Error fetching balance');
+    }
+  };
 
   const startOAuthFlow = async () => {
     const CLIENT_ID = '3502125623-fje9pvbvcuet45krmcr0v1433turot75.apps.googleusercontent.com';
@@ -39,6 +69,8 @@ export default function Home() {
       }
       const data = await response.json();
       setZkLoginUserAddress(data.address);
+      localStorage.setItem('zkLoginUserAddress', data.address);
+      fetchBalance(data.address);
     } catch (error) {
       console.error('Error handling auth response:', error);
     }
@@ -55,6 +87,9 @@ export default function Home() {
       {zkLoginUserAddress && (
         <div>
           <p>Your zkLogin Sui Address: {zkLoginUserAddress}</p>
+          {balance !== null && (
+            <p>Balance: {balance} SUI</p>
+          )}
         </div>
       )}
     </div>

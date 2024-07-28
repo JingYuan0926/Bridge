@@ -18,7 +18,6 @@ const Callback = () => {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const data = await response.json();
-          // Store the address in localStorage or state management solution
           localStorage.setItem('zkLoginUserAddress', data.address);
           router.push('/');
         } catch (error) {
