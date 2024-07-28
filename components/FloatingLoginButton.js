@@ -114,32 +114,44 @@ export default function FloatingLoginButton({ onLogin }) {
           height: 50px;
           border-radius: 12px;
           background-color: #4CA2FF;
-          color: white;
           position: fixed;
           top: 20px;
           left: 20px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: center;
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
           cursor: pointer;
           padding: 10px;
           transition: all 0.3s ease;
+          color: transparent;
+        }
+        
+        .float-button img {
+          margin-top: 85px;
+          margin-left: 30px;
+      }
+
+        .logout-button{
+          background-color: transparent;
+          color: transparent;
+          border: none;
         }
 
         .float-button:hover {
           background-color: #87CEEB;
-          width: 300px;
+          width: 550px;
           height: auto;
           padding: 20px;
+          color: white;
+
         }
 
         .float-button p {
           margin: 0;
         }
 
-        .logout-button {
+        .float-button:hover .logout-button {
           background-color: #FF6347;
           color: white;
           border: none;
@@ -148,6 +160,9 @@ export default function FloatingLoginButton({ onLogin }) {
           cursor: pointer;
           margin-top: 10px;
         }
+
+        .float-button:hover img{
+        display: none;}
 
         .logout-button:hover {
           background-color: #FF4500;
