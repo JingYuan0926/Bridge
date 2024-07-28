@@ -1,5 +1,4 @@
-// TransferFunds.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ed25519Keypair } from '@mysten/sui.js/keypairs/ed25519';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { SuiClient } from '@mysten/sui.js/client';
@@ -11,6 +10,10 @@ const TRANSFER_AMOUNT = 1000000; // 0.001 SUI in MIST
 const TransferFunds = ({ userAddress, onTransferComplete }) => {
     const [status, setStatus] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        transferFunds();
+    }, []);
 
     const transferFunds = async () => {
         setIsLoading(true);
@@ -30,6 +33,7 @@ const TransferFunds = ({ userAddress, onTransferComplete }) => {
             });
 
             setStatus(`Transfer successful! Transaction digest: ${result.digest}`);
+            alert(`Transfer successful! Transaction digest: ${result.digest}`);
             console.log('Transaction result:', result);
             console.log('Sender address:', keypair.getPublicKey().toSuiAddress());
             
@@ -40,23 +44,13 @@ const TransferFunds = ({ userAddress, onTransferComplete }) => {
         } catch (error) {
             console.error('Transfer error:', error);
             setStatus(`Transfer failed: ${error.message}`);
+            alert(`Transfer failed: ${error.message}`);
         } finally {
             setIsLoading(false);
         }
     };
 
-    return (
-        <div>
-            <button 
-                onClick={transferFunds} 
-                disabled={isLoading} 
-                style={{ padding: '10px 20px', fontSize: '16px', margin: '20px' }}
-            >
-                {isLoading ? 'Transferring...' : 'Transfer 0.001 SUI'}
-            </button>
-            <p>{status}</p>
-        </div>
-    );
+    return null; // No need to render anything
 };
 
 export default TransferFunds;

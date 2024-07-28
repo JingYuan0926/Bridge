@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function FloatingLoginButton() {
+export default function FloatingLoginButton({ onLogin }) {
   const [zkLoginUserAddress, setZkLoginUserAddress] = useState(null);
   const [balance, setBalance] = useState(null);
   const [authUrl, setAuthUrl] = useState('');
@@ -10,6 +10,9 @@ export default function FloatingLoginButton() {
     if (storedAddress) {
       setZkLoginUserAddress(storedAddress);
       fetchBalance(storedAddress);
+      if (onLogin) {
+        onLogin(storedAddress);
+      }
     }
   }, []);
 
@@ -71,8 +74,20 @@ export default function FloatingLoginButton() {
       setZkLoginUserAddress(data.address);
       localStorage.setItem('zkLoginUserAddress', data.address);
       fetchBalance(data.address);
+      if (onLogin) {
+        onLogin(data.address);
+      }
     } catch (error) {
       console.error('Error handling auth response:', error);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('zkLoginUserAddress');
+    setZkLoginUserAddress(null);
+    setBalance(null);
+    if (onLogin) {
+      onLogin(null);
     }
   };
 
@@ -89,45 +104,54 @@ export default function FloatingLoginButton() {
           {balance !== null && (
             <p>Balance: {balance} SUI</p>
           )}
+          <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
       )}
       <style jsx>{`
-.float-button{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: rgb(127, 170, 244);
-    color: transparent;
-    position: fixed; /* Fixed position for floating effect */
-    top: 20px; /* Position from the top */
-    left: 20px; /* Position from the left */
-}
+        .float-button {
+          width: 120px;
+          height: 50px;
+          border-radius: 12px;
+          background-color: #ADD8E6;
+          color: white;
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+          padding: 10px;
+          transition: all 0.3s ease;
+        }
 
+        .float-button:hover {
+          background-color: #87CEEB;
+          width: 300px;
+          height: auto;
+          padding: 20px;
+        }
 
-.float-button:hover {
-    background-color: rgb(127, 170, 244); /* Light blue background */
-    color: white; /* White font color */
-    border: none; /* Remove default border */
-    border-radius: 12px; /* Slightly rounded borders */
-    width: 520px; /* Width of the button */
-    height: 100px; /* Height of the button */
-    display: flex; /* Center the content */
-    flex-direction: column; /* Stack the content vertically */
-    padding-left: 10px; /* Add left padding */
-    justify-content: center; /* Center the content vertically */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for a floating effect */
-    position: fixed; /* Fixed position for floating effect */
-    top: 20px; /* Position from the top */
-    left: 20px; /* Position from the left */
-    font-size: 16px; /* Font size */
-    text-align: left; /* Center text inside the button */
-    color: white; /* White font color */
-    z-index: 1001; /* Set the button above other elements */
-}
-      `}
-      
-      
-      </style>
+        .float-button p {
+          margin: 0;
+        }
+
+        .logout-button {
+          background-color: #FF6347;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 5px 10px;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+
+        .logout-button:hover {
+          background-color: #FF4500;
+        }
+      `}</style>
     </div>
   );
 }
