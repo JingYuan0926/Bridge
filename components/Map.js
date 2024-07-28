@@ -1,10 +1,10 @@
 // components/Map.js
 import React from 'react';
 import Character from './Character';
-import Image from 'next/image';
-
+import FloatingLoginButton from './FloatingLoginButton';
 const Map = () => {
   return (
+    
     <div
       style={{
         position: 'absoulte',
@@ -15,6 +15,7 @@ const Map = () => {
         margin: 0,
       }}
     >
+
       <div
         style={{
           position: 'absolute',

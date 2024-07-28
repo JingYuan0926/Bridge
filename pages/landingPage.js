@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';  // Import useRouter from next/router
+import FloatingLoginButton, { StartButton } from '../components/FloatingLoginButton';  // Import the FloatingLoginButton component
 
 export default function LandingPage() {
   const router = useRouter();  // Initialize the router
@@ -18,9 +19,7 @@ export default function LandingPage() {
       </Head>
       <main className="main">
         <div className="buttons">
-          <button className="play-button" onClick={handleStartClick}>
-            <span className="button-text">START</span>
-          </button>
+          <FloatingLoginButton/>
         </div>
       </main>
       <style jsx global>{`

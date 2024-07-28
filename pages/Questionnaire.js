@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import FloatingLoginButton from '@/components/FloatingLoginButton';
 
 const initialQuestions = [
   { question: "What is your age?", type: "long" },
@@ -58,7 +59,7 @@ export default function NewQuestionnaire() {
         console.log(data.message);
         setResponses(Array(initialQuestions.length).fill('')); 
         
-        router.push('/mainPage');
+        router.push('/map'); // Changed from /mainPage to /map
       } else {
         setError(data.error || 'Something went wrong');
       }
@@ -69,7 +70,9 @@ export default function NewQuestionnaire() {
   };
 
   return (
-    <div className='Universal'>
+    <div>
+      <FloatingLoginButton/>
+<div className='Universal'>
       <div className="container">
         <h1 className="title">Financial Literacy Questionnaire</h1>
         {questions.map((q, index) => (
@@ -137,7 +140,7 @@ export default function NewQuestionnaire() {
         }
 
         .title {
-          font-size: 30px;
+          font-size: 40px;
           font-weight: bold;
           margin-bottom: 18px;
           text-align: center;
@@ -150,7 +153,8 @@ export default function NewQuestionnaire() {
           margin-bottom: 10px;
           font-weight: bold;
           margin-left: 5%;
-          font-size: 23px; 
+          font-size: 20px; 
+          color: rgba(245, 245, 245, 0.80);
         }
         .input, .textarea {
           width: 90%;
@@ -176,6 +180,7 @@ export default function NewQuestionnaire() {
           cursor: pointer;
           transition: background-color 0.3s;
           font-size: 21px; 
+          font-weight:bold;
         }
         .submit-button:hover {
           background-color: lightgray;
@@ -202,5 +207,7 @@ export default function NewQuestionnaire() {
         }
       `}</style>
     </div>
+    </div>
+    
   );
 }
