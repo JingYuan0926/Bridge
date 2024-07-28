@@ -10,7 +10,7 @@ let model = 'gpt-4o';
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-  apiKey:"sk-proj-RjT060HylsmXjtKeYLz8T3BlbkFJrFuKACri0lEweh6JyWr3",
+  apiKey:"sk-proj-HAQOhcl4FZ3pvoAyZW8PT3BlbkFJZ9UGPV8KPGEwaKgl3kEy",
 });
 
 // Function to read the financial literacy level from the file
