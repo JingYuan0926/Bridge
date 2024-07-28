@@ -51,12 +51,12 @@ const Character = () => {
   }, [navigate, router]);
   useEffect(() => {
     if (quiz) {
-      router.push('/quiz'); // Replace '/newpage' with your desired route
+      router.push('./quiz'); // Replace '/newpage' with your desired route
     }
   }, [quiz, router]);
   useEffect(() => {
     if (tutorial) {
-      router.push('/tutorial'); // Replace '/newpage' with your desired route
+      router.push('./tutorial'); // Replace '/newpage' with your desired route
     }
   }, [tutorial, router]);
 

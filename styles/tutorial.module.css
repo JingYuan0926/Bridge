@@ -1,0 +1,54 @@
+.story-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/tutorial-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.story-content {
+    width: 60%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.scene {
+    margin-bottom: 20px;
+}
+
+.font-joystix {
+    font-family: 'Joystix', sans-serif;
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0;
+}
+
+
+
+.nav-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: rgb(19, 112, 39);
+    background-color: rgba(76, 208, 105, 0.744);
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    font-size: large;
+}
+
+.nav-button:hover {
+    background-color: rgba(76, 208, 105, 0.547);
+}
