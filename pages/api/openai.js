@@ -6,11 +6,11 @@ import fs from 'fs';
 
 // Load environment variables
 dotenv.config({ path: path.resolve(__dirname, '.env') });
-let model = 'gpt-4o';
+const model = 'gpt-4';
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-  apiKey:"sk-proj-Yp5E4V6BCWvNcYnDb20cT3BlbkFJSkDCapP4BA264bYl6fEW",
+  apiKey:"sk-proj-RjT060HylsmXjtKeYLz8T3BlbkFJrFuKACri0lEweh6JyWr3",
 });
 
 // Function to read the financial literacy level from the file
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
 
         res.status(200).json({ message: response.choices[0].message.content.trim() });
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error creating completion:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Internal Server Error' });
       }
     } else if (action === 'evaluateLiteracy' && questions && responses) {
@@ -134,7 +134,7 @@ No need to write any reason, just give the number. Only and only number, don't s
 
         res.status(200).json({ message: level });
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error creating completion:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Internal Server Error' });
       }
     } else if (action === 'generateQuizContent') {
@@ -178,7 +178,7 @@ No need to write any reason, just give the number. Only and only number, don't s
 
         res.status(200).json({ message: response.choices[0].message.content.trim() });
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error creating completion:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Internal Server Error' });
       }
     } else if (action === 'evaluateQuiz' && multipleChoiceAnswer && subjectiveAnswer) {
@@ -218,7 +218,7 @@ Evaluate the answers and provide feedback on whether the answers are good and ex
 
         res.status(200).json({ message: response.choices[0].message.content.trim() });
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error creating completion:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Internal Server Error' });
       }
     } else {
