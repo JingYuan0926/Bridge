@@ -116,7 +116,7 @@ export default function FloatingLoginButton({ onLogin }) {
           width: 120px;
           height: 50px;
           border-radius: 12px;
-          background-color: #ADD8E6;
+          background-color: #4CA2FF;
           color: white;
           position: fixed;
           top: 20px;
